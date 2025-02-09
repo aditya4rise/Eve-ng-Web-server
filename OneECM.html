@@ -1,0 +1,25 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const serverIp = req.socket.localAddress;
+
+    res.send(`
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>10.100.105.4</title>
+</head>
+<body>
+<h1 style="color:red;">This is OneECM Prod server 01</h1>
+<h2 style="color:black;">This server will help you to make payment of you electricity bill.Thank you!</h2>
+<h3 style="color:black;">Please do not share your OTP with anyone!</h3>
+<h4 style="color:black;">You are one safe hands Stay safe!!!</h4>
+</body>
+</html>
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
